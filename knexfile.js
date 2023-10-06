@@ -1,18 +1,18 @@
 // Import dotenv to process environment variables from `.env` file.
-require('dotenv').config();
+require("dotenv").config();
 // Update with your config settings.
-
+// feature Aung
 /**
  * @type { Object.<string, import("knex").Knex.Config> }
  */
 
 module.exports = {
-  client: 'mysql',
+  client: "mysql",
   connection: {
     host: process.env.DB_HOST,
     database: process.env.DB_LOCAL_DBNAME,
     user: process.env.DB_LOCAL_USER,
     password: process.env.DB_LOCAL_PASSWORD,
-    charset: 'utf8',
+    charset: "utf8",
   },
 };
