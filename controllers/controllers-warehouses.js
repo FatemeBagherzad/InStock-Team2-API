@@ -4,7 +4,7 @@ exports.getAllWarehouses = (req, res) => {
   knex('warehouses')
     .then((data) => {
       res.status(200).json(data);
-      console.log(data);
+      console.log('In W');
     })
     .catch((err) => res.status(400).send(`Error retrieving data: ${err}`));
   console.log('req');
