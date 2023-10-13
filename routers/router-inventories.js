@@ -4,14 +4,14 @@ const controllerI = require('../controllers/controllers-inventories');
 const router = express.Router();
 
 router
-  .route('/inventory')
+  .route('/')
   .get(controllerI.getAllInventory)
   .post(controllerI.postNewInventory)
   .put(controllerI.editInventory)
   .delete(controllerI.deleteInventory);
 
 router
-  .route('/inventory/:id')
+  .route('/:id')
   .get(controllerI.getInventoryById)
   .put(controllerI.editInventoryById)
   .delete(controllerI.edeleteInventoryById);
