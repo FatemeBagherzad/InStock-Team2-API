@@ -1,10 +1,10 @@
 const knex = require('knex')(require('../knexfile'));
+const uniqid = require('uniqid');
 
 exports.getAllInventory = (req, res) => {
   knex('inventories')
     .then((data) => {
       res.status(200).json(data);
-      console.log('In I');
     })
     .catch((err) => res.status(400).send(`Error retrieving data: ${err}`));
 };
@@ -32,7 +32,17 @@ exports.getInventoryById = (req, res) => {
 };
 
 exports.postNewInventory = (req, res) => {
-  console.log('req');
+  knex('inventories')
+    .insert(req.body)
+    .then((result) => {
+      return knex('inventories').where({ id: result[0] });
+    })
+    .then((res) => {
+      console.log(res);
+    })
+    .catch((err) => {
+      console.log(err);
+    });
 };
 
 exports.editInventory = (req, res) => {
