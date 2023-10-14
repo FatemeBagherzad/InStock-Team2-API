@@ -37,11 +37,14 @@ exports.postNewInventory = (req, res) => {
     .then((result) => {
       return knex('inventories').where({ id: result[0] });
     })
-    .then((res) => {
-      console.log(res);
+    .then((result) => {
+      res.status(200).json(result);
     })
     .catch((err) => {
       console.log(err);
+      res.status(500).json({
+        message: `Unable to retrieve Ibventories `,
+      });
     });
 };
 
@@ -49,14 +52,24 @@ exports.editInventory = (req, res) => {
   console.log('req');
 };
 
-exports.deleteInventory = (req, res) => {
-  console.log('req');
+exports.deleteInventoryById = (req, res) => {
+  knex('inventories')
+    .where({ id: req.params.id })
+    .del()
+    .then((result) => {
+      if (result === 0) {
+        return res.status(400).json({
+          message: `Inventory ID: ${req.params.id} to be deleted not found.`,
+        });
+      }
+      // no content response
+      res.status(204).send();
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Unable to delete user' });
+    });
 };
 
 exports.editInventoryById = (req, res) => {
-  console.log('req');
-};
-
-exports.edeleteInventoryById = (req, res) => {
   console.log('req');
 };
