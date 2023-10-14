@@ -5,11 +5,12 @@ router
   .route("/")
   .get(controllerI.getAllInventory)
   .post(controllerI.postNewInventory)
-  .put(controllerI.editInventory)
-  .delete(controllerI.deleteInventory);
+  .put(controllerI.editInventory);
+
 router
   .route("/:id")
   .get(controllerI.getInventoryById)
   .put(controllerI.editInventoryById)
-  .delete(controllerI.edeleteInventoryById);
+  .delete(controllerI.deleteInventoryById);
+
 module.exports = router;
