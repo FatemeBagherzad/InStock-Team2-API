@@ -56,5 +56,19 @@ exports.editWarehouseById = (req, res) => {
 };
 
 exports.deleteWarehouseById = (req, res) => {
-  console.log('req');
+  knex('warehouses')
+    .where({ id: req.params.id })
+    .del()
+    .then((result) => {
+      if (result === 0) {
+        return res.status(400).json({
+          message: `warehouse ID: ${req.params.id} to be deleted not found.`,
+        });
+      }
+      // no content response
+      res.status(204).send();
+    })
+    .catch((err) => {
+      res.status(500).json({ message: 'Unable to delete user' });
+    });
 };
