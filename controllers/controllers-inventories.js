@@ -20,7 +20,7 @@ exports.postNewInventory = (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({
-        message: `Unable to retrieve Ibventories `,
+        message: `Unable to retrieve Inventories `,
       });
     });
 };
