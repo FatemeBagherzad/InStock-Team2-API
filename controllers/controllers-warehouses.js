@@ -13,12 +13,8 @@ exports.postNewWarehouse = (req, res) => {
 exports.editWarehouse = (req, res) => {
   console.log('req');
 };
-exports.deleteWarehouse = (req, res) => {
-  console.log('req');
-};
 
 exports.getWarehouseById = (req, res) => {
-  console.log('getWarehouseById');
   knex('warehouses')
     .where({ id: req.params.id })
     .then((warehouse) => {
@@ -31,7 +27,6 @@ exports.getWarehouseById = (req, res) => {
       const warehouseData = warehouse;
 
       res.status(200).json(warehouseData);
-      console.log(warehouseData);
     })
     .catch(() => {
       res.status(500).json({
@@ -42,6 +37,6 @@ exports.getWarehouseById = (req, res) => {
 exports.editWarehouseById = (req, res) => {
   console.log('req');
 };
-exports.edeleteWarehouseById = (req, res) => {
+exports.deleteWarehouseById = (req, res) => {
   console.log('req');
 };
