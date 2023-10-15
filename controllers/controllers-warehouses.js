@@ -26,10 +26,6 @@ exports.postNewWarehouse = (req, res) => {
     });
 };
 
-exports.editWarehouse = (req, res) => {
-  console.log('req');
-};
-
 exports.getWarehouseById = (req, res) => {
   knex('warehouses')
     .where({ id: req.params.id })
@@ -52,7 +48,23 @@ exports.getWarehouseById = (req, res) => {
 };
 
 exports.editWarehouseById = (req, res) => {
-  console.log('req');
+  console.log(req.params.id);
+  knex('warehouses')
+    .where({ id: req.params.id })
+    .update(req.body)
+    .then(() => {
+      return knex('warehouses').where({
+        id: req.params.id,
+      });
+    })
+    .then((updatedWarehouse) => {
+      res.json(updatedWarehouse[0]);
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: `Unable to update inventory with ID: ${req.params.id}`,
+      });
+    });
 };
 
 exports.deleteWarehouseById = (req, res) => {

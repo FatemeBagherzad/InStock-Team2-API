@@ -6,8 +6,7 @@ const router = express.Router();
 router
   .route('/')
   .get(controllerW.getAllWarehouses)
-  .post(controllerW.postNewWarehouse)
-  .put(controllerW.editWarehouse);
+  .post(controllerW.postNewWarehouse);
 
 router
   .route('/:id')
