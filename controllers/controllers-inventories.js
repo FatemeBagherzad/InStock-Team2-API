@@ -1,8 +1,8 @@
-const knex = require('knex')(require('../knexfile'));
-const uniqid = require('uniqid');
+const knex = require("knex")(require("../knexfile"));
+const uniqid = require("uniqid");
 
 exports.getAllInventory = (req, res) => {
-  knex('inventories')
+  knex("inventories")
     .then((data) => {
       res.status(200).json(data);
     })
@@ -10,7 +10,7 @@ exports.getAllInventory = (req, res) => {
 };
 
 exports.getInventoryById = (req, res) => {
-  knex('inventories')
+  knex("inventories")
     .where({ id: req.params.id })
     .then((inventory) => {
       if (inventory.length === 0) {
@@ -32,10 +32,10 @@ exports.getInventoryById = (req, res) => {
 };
 
 exports.postNewInventory = (req, res) => {
-  knex('inventories')
+  knex("inventories")
     .insert(req.body)
     .then((result) => {
-      return knex('inventories').where({ id: result[0] });
+      return knex("inventories").where({ id: result[0] });
     })
     .then((result) => {
       res.status(200).json(result);
@@ -43,17 +43,17 @@ exports.postNewInventory = (req, res) => {
     .catch((err) => {
       console.log(err);
       res.status(500).json({
-        message: `Unable to retrieve Ibventories `,
+        message: `Unable to retrieve Inventory `,
       });
     });
 };
 
 exports.editInventory = (req, res) => {
-  console.log('req');
+  console.log("req");
 };
 
 exports.deleteInventoryById = (req, res) => {
-  knex('inventories')
+  knex("inventories")
     .where({ id: req.params.id })
     .del()
     .then((result) => {
@@ -66,10 +66,23 @@ exports.deleteInventoryById = (req, res) => {
       res.status(204).send();
     })
     .catch((err) => {
-      res.status(500).json({ message: 'Unable to delete user' });
+      res.status(500).json({ message: "Unable to delete user" });
     });
 };
 
 exports.editInventoryById = (req, res) => {
-  console.log('req');
+  const { id } = req.params;
+  const updatedData = req.body;
+  knex("inventories")
+    .where({ id })
+    .update(updatedData)
+    .then(() => {
+      res
+        .status(200)
+        .json({ message: `Inventory with ID ${id} has been updated` });
+    })
+    .catch((err) => {
+      res.status(500).json({ error: err.message });
+    });
 };
+

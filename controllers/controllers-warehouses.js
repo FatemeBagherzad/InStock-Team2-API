@@ -14,15 +14,30 @@ exports.postNewWarehouse = (req, res) => {
 exports.editWarehouse = (req, res) => {
   console.log("req");
 };
-exports.deleteWarehouse = (req, res) => {
-  console.log("req");
-};
-exports.getWarehouseById = (req, res) => {
-  console.log("req");
-};
+
 exports.editWarehouseById = (req, res) => {
   console.log("req");
 };
-exports.edeleteWarehouseById = (req, res) => {
+exports.getWarehouseById = (req, res) => {
+  console.log("getWarehouseById");
+  knex("warehouses")
+    .where({ id: req.params.id })
+    .then((warehouse) => {
+      if (warehouse.length === 0) {
+        return res
+          .status(404)
+          .json({ message: `Warehouse with ID: ${req.params.id} not found` });
+      }
+      const warehouseData = warehouse;
+      res.status(200).json(warehouseData);
+      console.log(warehouseData);
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: `Unable to retrieve warehouse data for warehouse with ID: ${req.params.id}`,
+      });
+    });
+};
+exports.deleteWarehouseById = (req, res) => {
   console.log("req");
 };
