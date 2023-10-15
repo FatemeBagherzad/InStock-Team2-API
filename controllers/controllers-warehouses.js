@@ -13,9 +13,6 @@ exports.postNewWarehouse = (req, res) => {
 exports.editWarehouse = (req, res) => {
   console.log("req");
 };
-exports.deleteWarehouse = (req, res) => {
-  console.log("req");
-};
 
 exports.getWarehouseById = (req, res) => {
   console.log("getWarehouseById");
@@ -42,6 +39,6 @@ exports.getWarehouseById = (req, res) => {
 exports.editWarehouseById = (req, res) => {
   console.log("req");
 };
-exports.edeleteWarehouseById = (req, res) => {
+exports.deleteWarehouseById = (req, res) => {
   console.log("req");
 };

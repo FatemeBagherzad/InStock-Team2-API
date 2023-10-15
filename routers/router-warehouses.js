@@ -1,19 +1,18 @@
-const express = require('express');
-const controllerW = require('../controllers/controllers-warehouses');
+const express = require("express");
+const controllerW = require("../controllers/controllers-warehouses");
 
 const router = express.Router();
 
 router
-  .route('/')
+  .route("/")
   .get(controllerW.getAllWarehouses)
   .post(controllerW.postNewWarehouse)
-  .put(controllerW.editWarehouse)
-  .delete(controllerW.deleteWarehouse);
+  .put(controllerW.editWarehouse);
 
 router
-  .route('/:id')
+  .route("/:id")
   .get(controllerW.getWarehouseById)
   .put(controllerW.editWarehouseById)
-  .delete(controllerW.edeleteWarehouseById);
+  .delete(controllerW.deleteWarehouseById);
 
 module.exports = router;
