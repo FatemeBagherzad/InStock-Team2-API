@@ -48,7 +48,6 @@ exports.getInventoryById = (req, res) => {
 };
 
 exports.editInventoryById = (req, res) => {
-  console.log(req.params.id);
   knex('inventories')
     .where({ id: req.params.id })
     .update(req.body)
@@ -83,4 +82,12 @@ exports.deleteInventoryById = (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: 'Unable to delete user' });
     });
+};
+
+exports.sort = (req, res) => {
+  knex('inventories')
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => res.status(400).send(`Error retrieving data: ${err}`));
 };
