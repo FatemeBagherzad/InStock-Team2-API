@@ -48,7 +48,6 @@ exports.getInventoryById = (req, res) => {
 };
 
 exports.editInventoryById = (req, res) => {
-  console.log(req.params.id);
   knex('inventories')
     .where({ id: req.params.id })
     .update(req.body)

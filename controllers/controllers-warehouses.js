@@ -12,7 +12,6 @@ exports.postNewWarehouse = (req, res) => {
   knex('warehouses')
     .insert(req.body)
     .then((result) => {
-      console.log(result[0]);
       return knex('warehouses').where({ id: result[0] });
     })
     .then((result) => {
@@ -48,7 +47,6 @@ exports.getWarehouseById = (req, res) => {
 };
 
 exports.editWarehouseById = (req, res) => {
-  console.log(req.params.id);
   knex('warehouses')
     .where({ id: req.params.id })
     .update(req.body)
@@ -86,7 +84,6 @@ exports.deleteWarehouseById = (req, res) => {
 };
 
 exports.getInventorieswithWarehouse = (req, res) => {
-  console.log(req.params.id);
   knex('warehouses')
     .where({ id: req.params.id })
     .then((warehouse) => {
