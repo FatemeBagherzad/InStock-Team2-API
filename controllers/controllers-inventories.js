@@ -9,6 +9,23 @@ exports.getAllInventory = (req, res) => {
     .catch((err) => res.status(400).send(`Error retrieving data: ${err}`));
 };
 
+exports.postNewInventory = (req, res) => {
+  knex('inventories')
+    .insert(req.body)
+    .then((result) => {
+      return knex('inventories').where({ id: result[0] });
+    })
+    .then((result) => {
+      res.status(200).json(result);
+    })
+    .catch((err) => {
+      console.log(err);
+      res.status(500).json({
+        message: `Unable to retrieve Inventories `,
+      });
+    });
+};
+
 exports.getInventoryById = (req, res) => {
   knex('inventories')
     .where({ id: req.params.id })
@@ -22,7 +39,6 @@ exports.getInventoryById = (req, res) => {
       const inventoryData = inventory;
 
       res.status(200).json(inventoryData);
-      console.log(inventoryData);
     })
     .catch(() => {
       res.status(500).json({
@@ -31,25 +47,24 @@ exports.getInventoryById = (req, res) => {
     });
 };
 
-exports.postNewInventory = (req, res) => {
+exports.editInventoryById = (req, res) => {
+  console.log(req.params.id);
   knex('inventories')
-    .insert(req.body)
-    .then((result) => {
-      return knex('inventories').where({ id: result[0] });
+    .where({ id: req.params.id })
+    .update(req.body)
+    .then(() => {
+      return knex('inventories').where({
+        id: req.params.id,
+      });
     })
-    .then((result) => {
-      res.status(200).json(result);
+    .then((updatedInventory) => {
+      res.json(updatedInventory[0]);
     })
-    .catch((err) => {
-      console.log(err);
+    .catch(() => {
       res.status(500).json({
-        message: `Unable to retrieve Ibventories `,
+        message: `Unable to update inventory with ID: ${req.params.id}`,
       });
     });
-};
-
-exports.editInventory = (req, res) => {
-  console.log('req');
 };
 
 exports.deleteInventoryById = (req, res) => {
@@ -68,8 +83,4 @@ exports.deleteInventoryById = (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: 'Unable to delete user' });
     });
-};
-
-exports.editInventoryById = (req, res) => {
-  console.log('req');
 };
