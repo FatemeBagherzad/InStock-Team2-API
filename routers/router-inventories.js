@@ -4,8 +4,7 @@ const router = express.Router();
 router
   .route("/")
   .get(controllerI.getAllInventory)
-  .post(controllerI.postNewInventory)
-  .put(controllerI.editInventory);
+  .post(controllerI.postNewInventory);
 
 router
   .route("/:id")
