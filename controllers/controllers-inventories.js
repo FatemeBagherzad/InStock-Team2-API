@@ -84,3 +84,11 @@ exports.deleteInventoryById = (req, res) => {
       res.status(500).json({ message: 'Unable to delete user' });
     });
 };
+
+exports.sort = (req, res) => {
+  knex('inventories')
+    .then((data) => {
+      res.status(200).json(data);
+    })
+    .catch((err) => res.status(400).send(`Error retrieving data: ${err}`));
+};

@@ -14,4 +14,8 @@ router
   .put(controllerW.editWarehouseById)
   .delete(controllerW.deleteWarehouseById);
 
+router
+  .route('/getInventoriesByWarehouseId/:id')
+  .get(controllerW.getInventorieswithWarehouse);
+
 module.exports = router;
