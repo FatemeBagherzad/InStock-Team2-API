@@ -84,3 +84,34 @@ exports.deleteWarehouseById = (req, res) => {
       res.status(500).json({ message: 'Unable to delete user' });
     });
 };
+
+exports.getInventorieswithWarehouse = (req, res) => {
+  console.log(req.params.id);
+  knex('warehouses')
+    .where({ id: req.params.id })
+    .then((warehouse) => {
+      knex('inventories')
+        .where({ warehouse_id: warehouse[0].id })
+        .then((inventory) => {
+          if (inventory.length === 0) {
+            return res.status(404).json({
+              message: `Inventory with ID: ${req.params.id} not found`,
+            });
+          }
+
+          const inventoryData = inventory;
+
+          res.status(200).json(inventoryData);
+        })
+        .catch(() => {
+          res.status(500).json({
+            message: `Unable to retrieve inventory data for inventory with ID: ${req.params.id}`,
+          });
+        });
+    })
+    .catch(() => {
+      res.status(500).json({
+        message: `Unable to retrieve warehouse data for warehouse with ID: ${req.params.id}`,
+      });
+    });
+};
