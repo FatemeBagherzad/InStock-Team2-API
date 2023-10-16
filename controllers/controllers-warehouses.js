@@ -10,12 +10,6 @@ exports.getAllWarehouses = (req, res) => {
 };
 
 exports.postNewWarehouse = (req, res) => {
-<<<<<<< HEAD
-  console.log("req");
-};
-exports.editWarehouse = (req, res) => {
-  console.log("req");
-=======
   knex('warehouses')
     .insert(req.body)
     .then((result) => {
@@ -31,19 +25,13 @@ exports.editWarehouse = (req, res) => {
         message: `Unable to retrieve warehouse `,
       });
     });
->>>>>>> master
 };
 
 exports.editWarehouseById = (req, res) => {
   console.log("req");
 };
 exports.getWarehouseById = (req, res) => {
-<<<<<<< HEAD
-  console.log("getWarehouseById");
-  knex("warehouses")
-=======
   knex('warehouses')
->>>>>>> master
     .where({ id: req.params.id })
     .then((warehouse) => {
       if (warehouse.length === 0) {
@@ -60,10 +48,6 @@ exports.getWarehouseById = (req, res) => {
       });
     });
 };
-<<<<<<< HEAD
-exports.deleteWarehouseById = (req, res) => {
-  console.log("req");
-=======
 
 exports.editWarehouseById = (req, res) => {
   console.log(req.params.id);
@@ -101,5 +85,4 @@ exports.deleteWarehouseById = (req, res) => {
     .catch((err) => {
       res.status(500).json({ message: 'Unable to delete user' });
     });
->>>>>>> master
 };

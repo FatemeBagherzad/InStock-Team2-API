@@ -47,13 +47,6 @@ exports.getInventoryById = (req, res) => {
     });
 };
 
-<<<<<<< HEAD
-exports.postNewInventory = (req, res) => {
-  knex("inventories")
-    .insert(req.body)
-    .then((result) => {
-      return knex("inventories").where({ id: result[0] });
-=======
 exports.editInventoryById = (req, res) => {
   console.log(req.params.id);
   knex('inventories')
@@ -63,29 +56,17 @@ exports.editInventoryById = (req, res) => {
       return knex('inventories').where({
         id: req.params.id,
       });
->>>>>>> master
     })
     .then((updatedInventory) => {
       res.json(updatedInventory[0]);
     })
     .catch(() => {
       res.status(500).json({
-<<<<<<< HEAD
-        message: `Unable to retrieve Inventory `,
-=======
         message: `Unable to update inventory with ID: ${req.params.id}`,
->>>>>>> master
       });
     });
 };
 
-<<<<<<< HEAD
-exports.editInventory = (req, res) => {
-  console.log("req");
-};
-
-=======
->>>>>>> master
 exports.deleteInventoryById = (req, res) => {
   knex("inventories")
     .where({ id: req.params.id })
@@ -103,23 +84,3 @@ exports.deleteInventoryById = (req, res) => {
       res.status(500).json({ message: "Unable to delete user" });
     });
 };
-<<<<<<< HEAD
-
-exports.editInventoryById = (req, res) => {
-  const { id } = req.params;
-  const updatedData = req.body;
-  knex("inventories")
-    .where({ id })
-    .update(updatedData)
-    .then(() => {
-      res
-        .status(200)
-        .json({ message: `Inventory with ID ${id} has been updated` });
-    })
-    .catch((err) => {
-      res.status(500).json({ error: err.message });
-    });
-};
-
-=======
->>>>>>> master
