@@ -11,12 +11,9 @@ router
   .get(controllerW.getWarehouseById)
   .put(controllerW.editWarehouseById)
   .delete(controllerW.deleteWarehouseById);
-<<<<<<< HEAD
-=======
 
 router
   .route('/getInventoriesByWarehouseId/:id')
   .get(controllerW.getInventorieswithWarehouse);
 
->>>>>>> master
 module.exports = router;
