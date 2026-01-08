@@ -2,18 +2,18 @@
 
 This repository contains the backend API for InStock App, which powers the application's core functionality.
 
-## Technologies
+## Tech Stack 🛠️
 
-<li>Node.js</li>
-<li>Express</li>
-<li>MySQL</li>
-<li>Knex</li>
-<li>CORS</li>
-<li>dotenv</li>
-<li>Nodemon</li>
-<li>uniqid</li>
-<li>Git, GitHub</li>
-<li>Jira</li>
+- Node.js & Express
+- MySQL / MySQL2
+- Knex (SQL query builder)
+- Axios
+- CORS
+- dotenv
+- Nodemon
+- uniqid
+- Git
+- Jira
 
 ## Installation and Demo
 
